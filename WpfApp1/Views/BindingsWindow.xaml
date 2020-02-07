@@ -1,0 +1,20 @@
+﻿<Window x:Class="WpfApp1.Views.BindingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodels="clr-namespace:WpfApp1.ViewModels"
+        xmlns:valueconverters="clr-namespace:WpfApp1.ValueConverters"
+        mc:Ignorable="d"
+        Title="Bindings" Height="450" Width="800" WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <valueconverters:VatValueConverter x:Key="VatValueConverter" />
+    </Window.Resources>
+
+    <StackPanel>
+        <TextBlock Text="{Binding SearchQuery}"></TextBlock>
+        <TextBox Text="{Binding SearchQuery, Mode=OneWay}"></TextBox>
+        <TextBox Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBlock Text="{Binding Price, Converter={StaticResource VatValueConverter}}"></TextBlock>
+    </StackPanel>
+</Window>

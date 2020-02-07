@@ -1,0 +1,59 @@
+﻿<Window x:Class="WpfApp1.Views.ArticleDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:decorators="clr-namespace:WpfApp1.Decorators"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:valueconverters="clr-namespace:WpfApp1.ValueConverters"
+        mc:Ignorable="d"
+        Title="ArticleDetailWindow" Height="200" Width="400">
+    <Window.Resources>
+        <valueconverters:ArticleStepperEnabledValueConverter x:Key="ArticleStepperEnabledValueConverter" />
+    </Window.Resources>
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="10"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Grid.Column="0" IsEnabled="{Binding Article, Converter={StaticResource ArticleStepperEnabledValueConverter}, ConverterParameter=Previous}" Command="{Binding PreviousCommand}" Width="60" HorizontalAlignment="Left">Previous</Button>
+        <Button Grid.Row="0" Grid.Column="2" IsEnabled="{Binding Article, Converter={StaticResource ArticleStepperEnabledValueConverter}, ConverterParameter=Next}" Command="{Binding NextCommand}" Width="60" HorizontalAlignment="Right">Next</Button>
+
+        <TextBlock Grid.Row="2" Grid.Column="0">Title</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding Article.Title}"></TextBlock>
+
+        <TextBlock Grid.Row="4" Grid.Column="0">Manufacturer</TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding Article.Manufacturer}"></TextBlock>
+
+        <TextBlock Grid.Row="6" Grid.Column="0">Category</TextBlock>
+        <ComboBox Grid.Row="6" Grid.Column="2" ItemsSource="{Binding Categories}" SelectedValuePath="Id" DisplayMemberPath="Key" SelectedValue="{Binding Article.Category}">
+            <b:Interaction.Triggers>
+                <b:EventTrigger EventName="SelectionChanged">
+                    <b:InvokeCommandAction Command="{Binding CategoryChangedCommand}"></b:InvokeCommandAction>
+                </b:EventTrigger>
+            </b:Interaction.Triggers>
+        </ComboBox>
+
+        <TextBlock Grid.Row="8" Grid.Column="0">Subcategory</TextBlock>
+        <ComboBox Grid.Row="8" Grid.Column="2" decorators:ComboBoxItemsSourceDecorator.ItemsSource="{Binding Subcategories}" SelectedValuePath="Id" DisplayMemberPath="Key" SelectedValue="{Binding Article.Subcategory}"></ComboBox>
+    </Grid>
+</Window>
