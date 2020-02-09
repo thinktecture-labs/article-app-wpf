@@ -7,16 +7,16 @@ namespace WpfApp1.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string searchQuery = "Search…";
-        public string SearchQuery
+        private string helloWorldText = "Hello World!";
+        public string HelloWorldText
         {
             get
             {
-                return searchQuery;
+                return helloWorldText;
             }
             set
             {
-                searchQuery = value;
+                helloWorldText = value;
                 OnPropertyChanged();
             }
         }
