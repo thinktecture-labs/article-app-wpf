@@ -6,15 +6,19 @@
         xmlns:viewmodels="clr-namespace:WpfApp1.ViewModels"
         xmlns:valueconverters="clr-namespace:WpfApp1.ValueConverters"
         mc:Ignorable="d"
-        Title="Bindings" Height="450" Width="800" WindowStartupLocation="CenterOwner">
+        Title="Bindings" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <valueconverters:VatValueConverter x:Key="VatValueConverter" />
     </Window.Resources>
 
-    <StackPanel>
-        <TextBlock Text="{Binding SearchQuery}"></TextBlock>
-        <TextBox Text="{Binding SearchQuery, Mode=OneWay}"></TextBox>
-        <TextBox Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+    <StackPanel Margin="10">
+        <TextBlock FontWeight="Bold">Data Binding</TextBlock>
+        <TextBlock Text="{Binding HelloWorldText}" />
+        <TextBlock FontWeight="Bold" Margin="0,10,0,0">Two-Way Binding</TextBlock>
+        <TextBox Text="{Binding HelloWorldText, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBlock FontWeight="Bold" Margin="0,10,0,0">Value Before Value Converter</TextBlock>
+        <TextBlock Text="{Binding Price}"></TextBlock>
+        <TextBlock FontWeight="Bold" Margin="0,10,0,0">Value Converter</TextBlock>
         <TextBlock Text="{Binding Price, Converter={StaticResource VatValueConverter}}"></TextBlock>
     </StackPanel>
 </Window>

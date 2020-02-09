@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="TabWindow" Height="450" Width="800" WindowStartupLocation="CenterOwner">
-    <StackPanel>
-        <TabControl Name="TabControl">
+        Title="TabWindow" Height="350" Width="800" WindowStartupLocation="CenterScreen">
+    <StackPanel Margin="10">
+        <TabControl Name="TabControl" Height="200" Margin="0,0,0,10">
             <TabItem Header="Page 1">Content 1</TabItem>
             <TabItem Header="Page 2">Content 2</TabItem>
             <TabItem Header="Page 3">Content 3</TabItem>

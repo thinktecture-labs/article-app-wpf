@@ -7,7 +7,7 @@
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:valueconverters="clr-namespace:WpfApp1.ValueConverters"
         mc:Ignorable="d"
-        Title="ArticleDetailWindow" Height="200" Width="400">
+        Title="ArticleDetailWindow" Height="200" Width="400" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <valueconverters:ArticleStepperEnabledValueConverter x:Key="ArticleStepperEnabledValueConverter" />
     </Window.Resources>
