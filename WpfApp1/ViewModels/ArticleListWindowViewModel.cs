@@ -12,8 +12,12 @@ namespace WpfApp1.ViewModels
 {
     public class ArticleListWindowViewModel : BindableBase
     {
+        private readonly ArticleService articleService;
+
         public ArticleListWindowViewModel(ArticleService articleService, CategoryService categoryService)
         {
+            this.articleService = articleService;
+
             LoadedCommand = new DelegateCommand(async () => await LoadListAsync());
             ItemSelectedCommand = new DelegateCommand(() =>
             {
@@ -59,8 +63,6 @@ namespace WpfApp1.ViewModels
 
         private async Task LoadListAsync()
         {
-            var httpClient = new HttpClient();
-            var articleService = new ArticleService(httpClient);
             Articles = await articleService.GetAll();
         }
     }
